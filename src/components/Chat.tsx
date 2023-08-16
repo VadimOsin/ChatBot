@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-// import axios from 'axios';
 import ChatContainer from './ChatContainer';
 import './Chat.scss'
 import InputMessage from "./InputMessage.tsx";
