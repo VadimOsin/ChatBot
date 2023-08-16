@@ -3,58 +3,55 @@ import React, {useState} from 'react';
 import ChatContainer from './ChatContainer';
 import './Chat.scss'
 import InputMessage from "./InputMessage.tsx";
+import axios from "axios";
 
 type Message = {
     text: string;
     isBot: boolean;
 };
-
 const Chat: React.FC = () => {
-    const [messages] = useState<Message[]>([{
-        text: "efwsfsf",
+    const [messages, setMessages] = useState<Message[]>([{
+        text: "Hello! I’m BotHub, AI-based bot designed to answer all your questions.",
         isBot: true
-    }, {
-        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
-        isBot: false
-    }, {
-        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
-        isBot: false
-    }, {
-        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
-        isBot: false
-    }, {
-        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
-        isBot: false
-    }, {
-        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
-        isBot: false
-    }, {
-        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
-        isBot: false
-    }, {
-        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
-        isBot: false
     }]);
 
-    // const sendMessage = async (message: string) => {
-    //     try {
-    //         const response = await axios.post('http://185.46.8.130/api/v1/chat/send-message', { message });
-    //
-    //         const chunks = response.data as Uint8Array[];
-    //         let text = '';
-    //
-    //         for (const chunk of chunks) {
-    //             const chunkData = JSON.parse(new TextDecoder().decode(chunk));
-    //             if (chunkData.status === 'content') {
-    //                 text += chunkData.value;
-    //                 setMessages([...messages, { avatar: 'mock-avatar.png', text, isBot: true }]); // Пример сообщения от бота
-    //                 // setMessages([...messages, { avatar: 'user-avatar.png', text, isBot: false }]); // Пример сообщения от пользователя
-    //             }
-    //         }
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
+    const sendMessage = async (message: string) => {
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: message, isBot: false },
+        ]);
+        try {
+            const response = await axios.post(
+                'http://185.46.8.130/api/v1/chat/send-message',
+                { message }
+            );
+            const chunks = response.data as string;
+            const chunkRegex = /{"status":"\w+","value":"[^"]+"}/g;
+            const parsedChunks = chunks.match(chunkRegex);
+            let text = '';
+            if (parsedChunks !== null) {
+                for (const chunkString of parsedChunks) {
+                    const chunkData = JSON.parse(chunkString);
+                    const status = chunkData.status.toString();
+                    const value = chunkData.value ? chunkData.value.toString() : '';
+
+                    if (status === 'content') {
+                        text += value;
+                    } else if (status === 'done') {
+                        break;
+                    }
+                }
+            } else {
+                console.error('No matched chunks found');
+            }
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                { text: text, isBot: true },
+            ]);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div className="container">
@@ -63,7 +60,7 @@ const Chat: React.FC = () => {
             <div className="chat">
                 <ChatContainer messages={messages}/>
             </div>
-            <InputMessage/>
+            <InputMessage sendMessage={sendMessage}/>
         </div>
     );
 };
