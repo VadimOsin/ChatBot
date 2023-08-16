@@ -14,7 +14,25 @@ const Chat: React.FC = () => {
         text: "efwsfsf",
         isBot: true
     }, {
-        text: "fdsfsfs",
+        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
+        isBot: false
+    }, {
+        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
+        isBot: false
+    }, {
+        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
+        isBot: false
+    }, {
+        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
+        isBot: false
+    }, {
+        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
+        isBot: false
+    }, {
+        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
+        isBot: false
+    }, {
+        text: "fdsfnvdjfgnjg jerbwkjeb fewfwef wef wef wef w f wef we fwe f wef wef we fw ef wef we fw ef wef w ef we fwef we fwe fwe  wef fw few fsfs",
         isBot: false
     }]);
 
