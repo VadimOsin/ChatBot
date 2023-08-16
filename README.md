@@ -1,27 +1,14 @@
-# React + TypeScript + Vite
+# Chat Bot (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+https://dazzling-pastelito-a5282b.netlify.app/
 
-Currently, two official plugins are available:
+Пользователь должен иметь возможность "переписываться" с ботом. Механика - как в любом стандартном чате. Каждое сообщение должно иметь аватар отправителя (на данном этапе моковой картинке как в фигме будет достаточно) и сам текст сообщения. В зависимости от размера сообщения контейнер сообщения должен иметь определенную длину и ширину. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+![image](https://github.com/VadimOsin/ChatBot/assets/77578690/c8341e54-8a89-4ebe-a3a7-4a98cb4e195c)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Технологии:
+- React с typescript
+- SCSS/SASS modules
+- JS Streams
+- Vite
